@@ -3,6 +3,8 @@
 set -e
 
 # Add elasticsearch as command if needed
+#1:0:1 mean $1 position 0 and 1byte length ,
+#for example "1-", ${1:01} = "1"
 if [ "${1:0:1}" = '-' ]; then
 	set -- elasticsearch "$@"
 fi
@@ -20,4 +22,5 @@ fi
 # As argument is not related to elasticsearch,
 # then assume that user wants to run his own process,
 # for example a `bash` shell to explore this image
+# $@ was set in before "set command"
 exec "$@"
